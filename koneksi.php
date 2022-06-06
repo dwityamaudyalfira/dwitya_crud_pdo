@@ -1,13 +1,15 @@
 <?php
-$dbserver = 'localhost';
-$dbname = 'crud_buku';
-$dbuser = 'root';
-$dbpassword = '';
-$dsn ="mysql:host={$dbserver};dbname={$dbname}";
-
-$connection = null;
-try{
-    $connection = new PDO($dsn,$dbuser,$dbpassword);
-} catch (Exception $exception){
-    die("terjadi error : ".$exception->getMessage());
+$user  = 'root';
+$pass = '';
+try {
+    // buat koneksi dengan database
+    $koneksi = new PDO('mysql:host=localhost;dbname=crud_buku;',$user,$pass);
+    // set error mode
+    $koneksi->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+}catch (PDOException $e) {
+    // tampilkan pesan kesalahan jika koneksi gagal
+    print "Koneksi atau query bermasalah : " . $e->getMessage() . "<br/>";
+    die();
 }
+
+?>
